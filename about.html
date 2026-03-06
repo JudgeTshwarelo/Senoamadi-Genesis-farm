@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ABOUT US | SPI</title>
+    <link rel="icon" type="image/png" href="SPI LOGO.jpg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", Arial, sans-serif;
+      }
+      body {
+        background: linear-gradient(135deg, #d9e4f5, #a7bfe8, #617ae0);
+        color: #fff;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /* HEADER */
+      header {
+        width: 100%;
+        background: darkblue;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        text-align: center;
+      }
+      header img {
+        height: 80px;
+        border-radius: 10px;
+      }
+      header h1 {
+        font-size: 1.6rem;
+        letter-spacing: 1px;
+      }
+
+      /* NAVIGATION */
+      nav {
+        width: 100%;
+        background: blue;
+        position: sticky;
+        top: 0;
+        z-index: 10000;
+      }
+      .nav-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0.8rem 1.2rem;
+        position: relative;
+      }
+      .logo {
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+        letter-spacing: 1px;
+      }
+      .nav-links {
+        display: flex;
+        gap: 15px;
+        list-style: none;
+      }
+      .nav-links a {
+        color: #fff;
+        text-decoration: none;
+        padding: 10px 15px;
+        border-radius: 6px;
+        font-weight: 600;
+        transition: 0.3s;
+      }
+      .nav-links a:hover {
+        background: blue;
+        box-shadow: 0 0 10px #4d88ff;
+      }
+
+      /* HAMBURGER */
+      .menu-toggle {
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 28px;
+        height: 20px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        z-index: 20000;
+      }
+      .menu-toggle span {
+        display: block;
+        height: 3px;
+        background: #fff;
+        border-radius: 2px;
+        transition: 0.3s;
+      }
+      .menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translateY(8px);
+      }
+      .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+      }
+      .menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translateY(-8px);
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 850px) {
+        .menu-toggle {
+          display: flex;
+        }
+        .nav-links {
+          position: absolute;
+          top: 1px;
+          right: 0;
+          width: 100%;
+          flex-direction: column;
+          align-items: center;
+          background: blue;
+          transform: translateY(-100%);
+          opacity: 0;
+          transition: 0.4s;
+          z-index: 10000;
+          padding: 20px 0;
+        }
+        .nav-links.active {
+          transform: translateY(0);
+          opacity: 1;
+        }
+        .nav-links a {
+          width: 100%;
+          text-align: center;
+          padding: 12px 0;
+        }
+      }
+
+      /* ABOUT SECTION */
+      .text {
+        font-size: 2rem;
+        margin: 40px 0 20px 0;
+        color: #00aaff;
+        text-align: center;
+      }
+      .about-description {
+        max-width: 800px;
+        text-align: center;
+        font-size: 1.1rem;
+        margin-bottom: 40px;
+      }
+
+      /* FOOTER */
+      footer {
+        background: darkblue;
+        color: white;
+        text-align: center;
+        padding: 1.5rem;
+        width: 100%;
+        margin-top: auto;
+      }
+      .social-icon {
+        margin-bottom: 10px;
+      }
+      .social-icon a {
+        color: white;
+        border: 2px solid white;
+        border-radius: 50%;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 6px;
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+        transition: 0.3s;
+      }
+      .social-icon a:hover {
+        background: #fff;
+        color: darkblue;
+        transform: scale(1.1);
+      }
+      /* --- ABOUT SECTION --- */
+      #about {
+        background: #f9f9ff;
+        color: #111;
+        text-align: center;
+        padding: 20px 20px;
+        border-radius: 12px;
+        margin-top: 30px;
+        width: 95%;
+        max-width: 1200px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .text {
+        color: darkblue;
+        margin-top: 30px;
+        font-size: 2rem;
+        margin-bottom: 20px;
+      }
+
+      .text1 {
+        color: #222;
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+
+      .aboutdescription {
+        font-size: 1rem;
+        line-height: 1.7;
+        max-width: 800px;
+        margin: auto;
+      }
+
+      /* --- CARDS --- */
+      .products {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
+        margin: 40px 20px;
+        width: 95%;
+        max-width: 1200px;
+      }
+
+      .card {
+        background: #ffffff;
+        color: #111;
+        border: 3px solid blue;
+        border-radius: 15px;
+        padding: 1.5rem;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
+      }
+
+      /* --- OBJECTIVES --- */
+      .main-container1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px 20px;
+      }
+
+      .content1 {
+        background-color: #f1f3ff;
+        color: #111;
+        border-radius: 12px;
+        padding: 30px;
+        max-width: 1200px;
+        width: 100%;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        line-height: 1.6;
+        font-size: 1rem;
+      }
+
+      .content1 h2 {
+        color: darkblue;
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 1.6rem;
+      }
+
+      /* --- FOOTER --- */
+      footer {
+        background: darkblue;
+        color: white;
+        text-align: center;
+        padding: 1.5rem;
+        width: 100%;
+        margin-top: 40px;
+      }
+
+      .social-icon {
+        margin-bottom: 10px;
+      }
+
+      .social-icon a {
+        color: white;
+        border: 2px solid white;
+        border-radius: 50%;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 6px;
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+        transition: all 0.3s ease;
+      }
+
+      .social-icon a:hover {
+        background: #fff;
+        color: darkblue;
+        transform: scale(1.1);
+      }
+
+      /* Mobile screens */
+@media (max-width: 600px) {
+    .products {
+      display: inline;
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 10px;
+    }
+
+    .card {
+      margin-bottom: 30px;
+    }
+}
+    </style>
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header>
+      <img src="ChatGPT Image Nov 23, 2025, 05_08_37 PM.png" alt="Senoamadi Poultry Logo" />
+      <h1>SENOAMADI POULTRY INDUSTRIES</h1>
+    </header>
+
+    <!-- NAVIGATION -->
+    <nav>
+      <div class="nav-container">
+        <a href="index.html" class="logo">SPI</a>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="about.html">ABOUT US</a></li>
+          <li><a href="SERVICES.html">SERVICES</a></li>
+          <li><a href="contact.html">CONTACTS</a></li>
+        </ul>
+        <button
+          class="menu-toggle"
+          id="menu-toggle"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <h1 class="text"><i>About Us</i></h1>
+
+    <!-- ABOUT SECTION -->
+    <section id="about">
+      <h4 class="text1">
+        <b
+          ><u><i>Background</i></u></b
+        >
+      </h4>
+      <p class="aboutdescription">
+        At Senoamadi Poultry Industries, we aim to provide farm-fresh eggs,
+        chicken meat, and organic poultry feed to our customers. Our mission is
+        to deliver healthy, organic, and affordable poultry products.
+      </p>
+    </section>
+
+    <!-- PRODUCTS / VALUES -->
+    <section id="products">
+      <div class="products">
+        <div class="card">
+          <h3>VISION:</h3>
+          <hr style="border: 3px solid blue; margin-bottom: 10px" />
+          <p>
+            1. To provide affordable, healthy, and high-quality poultry products
+            in South Africa.
+          </p>
+          <p>
+            2. To help fight poverty nationwide by creating jobs in the
+            community.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>MISSION:</h3>
+          <hr style="border: 3px solid blue; margin-bottom: 10px" />
+          <p>
+            To provide communities with fresh, affordable, and high-quality
+            poultry products while promoting food security and creating local
+            jobs.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>VALUES:</h3>
+          <hr style="border: 3px solid blue; margin-bottom: 10px" />
+          <ul style="list-style: none">
+            <li>Integrity</li>
+            <li>Quality</li>
+            <li>Sustainability</li>
+            <li>Community Impact</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- OBJECTIVES SECTION -->
+    <div class="main-container1">
+      <div class="content1">
+        <h3>Goals and Objectives:</h3>
+
+        <hr style="border: 3px solid blue; margin-bottom: 10px" />
+        <p>
+          Senoamadi Poultry’s objectives aim to facilitate economic growth and
+          create jobs within local communities. Our strategic focus areas
+          include:
+        </p>
+        <ul style="margin: 15px 0 15px 30px; color: #111">
+          <li>Growing the economy</li>
+          <li>Job creation and improving community livelihood</li>
+          <li>Economic empowerment</li>
+          <li>Poverty reduction</li>
+          <li>Improving health and social status</li>
+          <li>Reducing crime and corruption</li>
+          <li>Promoting safe and sustainable environments</li>
+        </ul>
+        <p>
+          Achieving these objectives requires strategic partnerships,
+          mentorship, and collaboration with investors. With shared commitment,
+          we can push back the frontiers of poverty and uplift our communities.
+        </p>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="social-icon">
+        <a href="mailto:senoamadigenesisfarm@gmail.com" target="_blank"
+          ><i class="fas fa-envelope"></i
+        ></a>
+        <a href="https://wa.me/+27721448175" target="_blank"
+          ><i class="fab fa-whatsapp"></i
+        ></a>
+        <a href="https://www.facebook.com/JUDGE.TSHWARELO"
+          ><i class="fab fa-facebook"></i
+        ></a>
+        <a href="http://tiktok.com/@instigatoral_prodidy"
+          ><i class="fab fa-tiktok"></i
+        ></a>
+      </div>
+
+      <hr style="border: 2px solid white; margin-bottom: 10px" />
+      <p>&copy; 2026 Senoamadi Poultry Industries. All rights reserved.</p>
+    </footer>
+
+    <!-- SCRIPT -->
+    <script>
+      const toggle = document.getElementById("menu-toggle");
+      const navLinks = document.getElementById("nav-links");
+
+      toggle.addEventListener("click", () => {
+        const expanded = toggle.getAttribute("aria-expanded") === "true";
+        toggle.setAttribute("aria-expanded", !expanded);
+        toggle.classList.toggle("active");
+        navLinks.classList.toggle("active");
+      });
+
+      // Close menu when link is clicked (mobile)
+      navLinks.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          if (navLinks.classList.contains("active")) {
+            navLinks.classList.remove("active");
+            toggle.classList.remove("active");
+            toggle.setAttribute("aria-expanded", false);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
